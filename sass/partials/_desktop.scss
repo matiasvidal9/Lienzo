@@ -1,0 +1,68 @@
+// Variables de colores
+@use "general" as *;
+
+@media screen and (min-width: 769px) {
+    .titulo-index {
+    font-size: 25vw; 
+    font-weight: bold;
+    letter-spacing: 8px;
+    color: $color-secondary;
+    text-transform: uppercase;
+    position: sticky; 
+    top: 10vh;
+    text-align: center;
+    z-index: 50; 
+    pointer-events: none; 
+    }
+
+    .galeria-preview {
+    position: relative;
+    min-height: 300vh; 
+    padding-top: 100px; 
+
+        img {
+        position: absolute;
+        object-fit: cover;
+        z-index: 10;
+        }
+
+        .img1 {
+        top: -30vw; 
+        left: 5%;
+        width: 30%;
+        height: auto;
+        }
+
+        .img2 {
+        top: 10%;
+        right: 10%;
+        width: 35%;
+        }
+
+        .img3 {
+        top: 25%;
+        left: 10%;
+        width: 25%;
+        }
+
+        .img4 {
+        top: 35%;
+        right: 15%;
+        width: 40%;
+        }
+
+        .img5 {
+        top: 45%; 
+        left: 10%;
+        width: 30%;
+        }
+    }
+
+    .footer {
+    padding: 5rem 2rem;
+    text-align: center;
+    background: $color-secondary;
+    color: $color-primary;
+    z-index: 1;
+    }
+}
