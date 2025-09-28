@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/estilos.css">
+    <title>Document</title>
+</head>
+<body class="body-tienda">
+    <header class="header-tienda">
+        <div class="logo">LIENZO</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a class="links" href="../index.html">Home</a></li>
+                <li class="links">Tienda
+                    <ul class="dropdown">
+                        <li><a class="links" href="fauvismo.html">Fauvismo</a></li>
+                        <li><a class="links" href="cubismo.html">Cubismo</a></li>
+                        <li><a class="links" href="impresionismo.html">Impresionismo</a></li>
+                        <li><a class="links" href="postimpresionismo.html">Postimpresionismo</a></li>
+                        <li><a class="links" href="renacimiento.html">Renacimiento</a></li>
+                    </ul>
+                </li>
+                <li><a class="links" href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+    <!-- formulario -->
+        <div>
+            <h1 class="titulo-contacto">CONTACTO</h1>
+            <form action="" class="formulario">
+                <label class="formulario-nombre" for="name">Name:</label>
+                <input class="caja" type="text" id="name" name="name" required>
+
+                <label class="formulario-email" for="email">Email:</label>
+                <input class="caja" type="email" id="email" name="email" required>
+
+                <label class="formulario-mensaje" for="message">Mensaje</label>
+                <textarea class="caja" id="message" name="message" rows="10" required></textarea>
+
+                <button type="button" class="btn btn-outline-secondary">Enviar</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer-tienda">
+        <p>&copy; 2025 Lienzo - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

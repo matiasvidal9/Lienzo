@@ -1,7 +1,94 @@
 // Variables de colores
 @use "general" as *;
+@use "mixins" as*;
 
 @media screen and (min-width: 769px) {
+
+    /* INDEX */
+    .body-index{
+    font-family: $font-main;
+    background-color: $color-primary;
+    line-height: 1.6;
+    }
+
+    /* navbar-index */
+    .header-index {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 1.5rem 3rem;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: $color-primary;
+    z-index: 1000;
+
+        .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        letter-spacing: 3px;
+        color: $color-secondary;
+        }
+
+        .nav-links {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+        position: relative;
+
+            li {
+            position: relative;
+
+                &:hover .dropdown {
+                display: block;
+                }
+            }
+
+            .dropdown {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: none; 
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: $color-primary;
+            padding: 1rem 0;
+            min-width: 150px;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+                li {
+                width: 100%;
+                padding: 0.5rem 1rem;
+
+                    a {
+                    color: $color-secondary;
+                    text-decoration: none;
+                    display: block;
+
+                        &:hover {
+                        background-color: $color-primary;
+                        }
+                    }   
+                }
+            }
+            .links{
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: $color-secondary;
+
+                &:hover {
+                text-decoration: underline;
+                }
+            }
+        }
+    }
+
     .titulo-index {
     font-size: 25vw; 
     font-weight: bold;
@@ -9,7 +96,7 @@
     color: $color-secondary;
     text-transform: uppercase;
     position: sticky; 
-    top: 10vh;
+    top: 40vh;
     text-align: center;
     z-index: 50; 
     pointer-events: none; 
@@ -58,11 +145,195 @@
         }
     }
 
-    .footer {
+    /* FOOTER */
+    .footer-index {
     padding: 5rem 2rem;
     text-align: center;
     background: $color-secondary;
     color: $color-primary;
     z-index: 1;
+    }
+
+
+    /* TIENDA */
+    .body-tienda{
+    font-family: $font-main;
+    background-color: $color-secondary;
+    line-height: 1.6;
+    }
+
+    /* navbar */
+    .header-tienda {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 1.5rem 3rem;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: $color-secondary;
+    z-index: 1000;
+
+        .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        letter-spacing: 3px;
+        color: $color-primary;
+        }
+
+        .nav-links {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+        position: relative;
+
+            li {
+            position: relative;
+
+                &:hover .dropdown {
+                display: block;
+                }
+            }
+
+            .dropdown {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: none; 
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: $color-secondary;
+            padding: 1rem 0;
+            min-width: 150px;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+                li {
+                width: 100%;
+                padding: 0.5rem 1rem;
+
+                    a {
+                    color: $color-primary;
+                    text-decoration: none;
+                    display: block;
+
+                        &:hover {
+                        background-color: $color-secondary;
+                        }
+                    }   
+                }
+            }
+            .links{
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: $color-primary;
+
+                &:hover {
+                text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    /* GALERIA DE PRODUCTOS */
+    .product-gallery {
+    padding: $espaciado-grande;
+    padding-top: 8rem;
+
+        .gallery-title {
+        color: $color-primary;
+        font-size: 2.5rem;
+        margin-bottom: $espaciado-grande;
+        font-weight: bold;
+        position: relative;
+        z-index: 10;
+        }
+
+        .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: $espaciado-grande;
+        }
+    }
+
+    .product-card {
+    cursor: pointer;
+
+        .card-image-container {
+        position: relative;
+        margin-bottom: $espaciado-mediano;
+        width: 100%;
+        height: 300px; 
+        overflow: hidden;
+        }
+
+        .product-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: $transicion-suave; 
+        }
+
+        .hover-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        }
+
+        .card-info {
+            .product-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+            }
+
+            .product-price {
+            font-size: 1rem;
+            color: $color-texto-secundario;
+            }
+        }
+
+        &:hover {
+            .hover-image {
+            opacity: 1;
+            }
+        }
+    }
+
+    .footer-tienda {
+    padding: 5rem 2rem;
+    text-align: center;
+    background: $color-primary;
+    color: $color-secondary;
+    z-index: 1;
+    }
+
+    /* CONTACTO */
+    .titulo-contacto{
+    @include padding(1rem, 1rem, 0rem, 2rem);
+    font-weight: bold;
+    text-transform:uppercase;
+    }
+    .formulario{
+    @include padding(1rem, 2rem, 1rem, 2rem);
+    @include flex(column, flex-start, stretch);
+        .formulario-nombre{
+        @include padding(1rem, 0rem, 0rem, 0rem);
+        text-transform: uppercase;
+        font-weight: bold;
+        }
+        .formulario-email{
+        @extend .formulario-nombre;
+        }
+        .formulario-mensaje{
+        @extend .formulario-nombre;
+        }
     }
 }

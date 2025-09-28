@@ -1,6 +1,13 @@
 // 🎨 Variables de color (blanco y negro nada más)
-$color-primary: #000; // negro
-$color-secondary: #fff; // blanco
+$color-primary: #000;
+$color-secondary: #fff; 
+$color-texto-principal: #333;
+$color-texto-secundario: #555;
+$color-borde: #e0e0e0;
+$color-hover-link: #007bff;
+$espaciado-grande: 2rem;
+$espaciado-mediano: 1rem;
+$transicion-suave: opacity 0.3s ease-in-out;
 
 // Tipografía base
 $font-main: 'Helvetica Neue', Arial, sans-serif;
@@ -10,49 +17,4 @@ $font-main: 'Helvetica Neue', Arial, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
-    font-family: $font-main;
-    background-color: $color-primary;
-    line-height: 1.6;
-}
-
-/* navbar */
-.header {
-    display: flex;
-    justify-content: space-between; // Logo a la izquierda, nav a la derecha
-    align-items: center;
-    padding: 1.5rem 3rem;
-    position: fixed; // Header fijo arriba
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: $color-primary;
-    backdrop-filter: blur(5px); // efecto difuminado elegante
-    z-index: 1000;
-
-    .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    letter-spacing: 3px;
-    color: $color-secondary;
-    }
-
-    .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-
-        .links{
-        text-decoration: none;
-        font-size: 1rem;
-        font-weight: 500;
-        color: $color-secondary;
-
-            &:hover {
-            text-decoration: underline;
-            }
-        }
-    }
 }
