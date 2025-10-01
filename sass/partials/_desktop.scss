@@ -16,7 +16,7 @@
     display: flex;
     justify-content: space-between; 
     align-items: center;
-    padding: 1.5rem 3rem;
+    padding: $espaciado-grande;
     position: fixed; 
     top: 0;
     left: 0;
@@ -102,7 +102,7 @@
     pointer-events: none; 
     }
 
-    .galeria-preview {
+    .galeria-index {
     position: relative;
     min-height: 300vh; 
     padding-top: 100px; 
@@ -167,7 +167,7 @@
     display: flex;
     justify-content: space-between; 
     align-items: center;
-    padding: 1.5rem 3rem;
+    padding: $espaciado-grande;
     position: fixed; 
     top: 0;
     left: 0;
@@ -241,11 +241,11 @@
     }
 
     /* GALERIA DE PRODUCTOS */
-    .product-gallery {
+    .galeria-tienda {
     padding: $espaciado-grande;
     padding-top: 8rem;
 
-        .gallery-title {
+        .titulo-tienda {
         color: $color-primary;
         font-size: 2.5rem;
         margin-bottom: $espaciado-grande;
@@ -254,17 +254,17 @@
         z-index: 10;
         }
 
-        .gallery-grid {
+        .galeria-tienda-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: $espaciado-grande;
         }
     }
 
-    .product-card {
+    .producto-card {
     cursor: pointer;
 
-        .card-image-container {
+        .card-imagen-container {
         position: relative;
         margin-bottom: $espaciado-mediano;
         width: 100%;
@@ -272,7 +272,7 @@
         overflow: hidden;
         }
 
-        .product-image {
+        .producto-imagen {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -280,7 +280,7 @@
         transition: $transicion-suave; 
         }
 
-        .hover-image {
+        .hover-imagen {
         position: absolute;
         top: 0;
         left: 0;
@@ -288,20 +288,20 @@
         }
 
         .card-info {
-            .product-name {
+            .producto-nombre {
             font-size: 1.1rem;
             font-weight: bold;
             margin-bottom: 0.25rem;
             }
 
-            .product-price {
+            .producto-precio {
             font-size: 1rem;
             color: $color-texto-secundario;
             }
         }
 
         &:hover {
-            .hover-image {
+            .hover-imagen {
             opacity: 1;
             }
         }
@@ -322,7 +322,7 @@
     text-transform:uppercase;
     }
     .formulario{
-    @include padding(1rem, 2rem, 1rem, 2rem);
+    @include padding(2.5rem, 2rem, 2.5rem, 2rem);
     @include flex(column, flex-start, stretch);
         .formulario-nombre{
         @include padding(1rem, 0rem, 0rem, 0rem);
