@@ -1,14 +1,29 @@
 // ========================================================
 // 1. Catálogo de Productos (Datos)
 // ========================================================
-const catalogoCubismo = [
-    { nombre: "La Amistad", precio: 25.00, stock: true },
-    { nombre: "El Sueño", precio: 30.00, stock: true },
-    { nombre: "Las Señoritas de Avignon", precio: 28.00, stock: true },
-    { nombre: "Mujer con Peras", precio: 35.00, stock: false },
-    { nombre: "La Lección", precio: 40.00, stock: true }
-];
 
+const catalogoGuardado = localStorage.getItem('catalogoCubismo');
+let catalogoCubismo;
+class Cuadro {
+    constructor(nombre, precio, stock) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.stock = stock;
+    }
+}
+
+if (catalogoGuardado) {
+    catalogoCubismo = JSON.parse(catalogoGuardado);
+} else {
+    catalogoCubismo = [
+    new Cuadro("La Amistad", 25.00, true),
+    new Cuadro("El Sueño", 30.00, true),
+    new Cuadro("Las Señoritas de Avignon", 28.00, true),
+    new Cuadro("Mujer con Peras", 35.00, false),
+    new Cuadro("La Lección", 40.00, true)
+    ];
+    localStorage.setItem('catalogoCubismo', JSON.stringify(catalogoCubismo));
+}
 // ========================================================
 // 2. Definición de Funciones
 // ========================================================
@@ -55,11 +70,8 @@ const iniciarConsultorDePrecios = () => {
 
         const cuadroEncontrado = catalogoCubismo.find(cuadro => cuadro.nombre.toLowerCase() === cuadroConsultado.toLowerCase());
 
-        if (cuadroEncontrado) { 
-            alert(`El precio de '${cuadroEncontrado.nombre}' es ${cuadroEncontrado.precio} €.`);
-        } else { 
-            alert("No tenemos información sobre ese cuadro.");
-        }
+        cuadroEncontrado ? alert(`El precio de '${cuadroEncontrado.nombre}' es ${cuadroEncontrado.precio} €.`) : alert("No tenemos información sobre ese cuadro."); 
+        
         seguirConsultando = confirm("¿Deseas consultar otro cuadro?");
     }
 }
