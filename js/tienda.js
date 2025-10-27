@@ -78,13 +78,14 @@ const iniciarConsultorDePrecios = () => {
 
 const mostrarCalculosFinales = () => {
     let valorTotalStock = 0;
-    for (const cuadro of catalogoCubismo) {
+    catalogoCubismo.forEach( (cuadro) => {
         if (cuadro.stock) {
             valorTotalStock += cuadro.precio;
         }
-    }
+    });
     console.log(`El valor total de los productos en stock es: ${valorTotalStock} €`);
 }
+
 
 // ========================================================
 // 3. Ejecución del Script
