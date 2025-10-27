@@ -76,16 +76,37 @@ const iniciarConsultorDePrecios = () => {
     }
 }
 
-const mostrarCalculosFinales = () => {
-    let valorTotalStock = 0;
-    catalogoCubismo.forEach( (cuadro) => {
-        if (cuadro.stock) {
-            valorTotalStock += cuadro.precio;
-        }
+const obtenerNombreDeCuadros = () => {
+    const nombres = catalogoCubismo.map( (cuadro) => {
+        return cuadro.nombre;
     });
-    console.log(`El valor total de los productos en stock es: ${valorTotalStock} €`);
+    return nombres;
 }
 
+
+const obtenerCuadrosEnStock = () => {
+    const cuadrosDisponibles = catalogoCubismo.filter( (cuadro) => {;
+    return cuadro.stock === true;
+});
+    return cuadrosDisponibles;
+}
+const cuadrosEnVenta = obtenerCuadrosEnStock();
+console.log("Cuadros actualmente en stock:", cuadrosEnVenta);
+cuadrosEnVenta.forEach( (cuadro) => {
+console.log(cuadro.nombre);
+});
+
+const mostrarCalculosFinales = () => {
+    const valorTotalStock = catalogoCubismo.reduce( (acumulador, cuadro) => {
+        if (cuadro.stock) {
+            return acumulador + cuadro.precio;
+        } else {
+            return acumulador;
+        }
+    }, 0);
+
+    console.log(`El valor total de los productos en stock es: ${valorTotalStock} €`);
+}
 
 // ========================================================
 // 3. Ejecución del Script
@@ -96,3 +117,6 @@ ingresoUsuario();
 verificarPalabraClave();
 iniciarConsultorDePrecios();
 mostrarCalculosFinales();
+
+const listaDeNombres = obtenerNombresDeCuadros();
+console.log("Nombres en el catálogo:", listaDeNombres);
