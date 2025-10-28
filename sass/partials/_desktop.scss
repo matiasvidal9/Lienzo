@@ -4,6 +4,80 @@
 
 @media screen and (min-width: 769px) {
 
+    /* TARJETA DE INGRESO */
+
+    #overlay { 
+    display: none;          
+    position: fixed;            
+    top: 0;                     
+    left: 0;                    
+    width: 100%;                
+    height: 100%;               
+    background-color: rgba(0, 0, 0, 0.5);  
+    z-index: 1000;            
+    }
+
+    .tarjeta-flotante {
+    display: none;             
+    position: fixed;            
+    top: 50%;                   
+    left: 50%;                  
+    transform: translate(-50%, -50%);
+    width: 90%;                 
+    max-width: 400px;         
+    background-color: #fff;     
+    color: #333;                
+    padding: 2rem;           
+    border-radius: 8px;        
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+    z-index: 1001;              
+    text-align: center;         
+
+        h3 {
+        margin-bottom: 1rem;   
+        }
+
+        #tarjeta-input-zona {
+        margin-top: 1.5rem;      
+        display: flex;            
+        flex-direction: column;  
+        align-items: center;      
+        gap: 0.8rem;              
+
+            label {
+            margin-bottom: 0.2rem;   
+            }
+
+            input {
+            padding: 0.5rem;        
+            width: 80%;             
+            margin-bottom: 0.5rem;   
+            }
+        }
+
+        .tarjeta-botones {
+        display: flex;            
+        justify-content: center;  
+        gap: 1rem;                
+        width: 100%;              
+
+            button {
+            padding: 0.5rem 1rem;   
+            }
+        }
+
+        #botonCerrarTarjeta { 
+        position: absolute;      
+        top: 10px;                
+        right: 10px;              
+        background: none;         
+        border: none;            
+        font-size: 1.2rem;        
+        cursor: pointer;          
+        }
+    }
+
+
     /* INDEX */
     .body-index{
     font-family: $font-main;
@@ -173,7 +247,7 @@
     left: 0;
     width: 100%;
     background-color: $color-secondary;
-    z-index: 1000;
+    z-index: 999;
 
         .logo {
         font-size: 1.8rem;
@@ -245,6 +319,14 @@
     padding: $espaciado-grande;
     padding-top: 8rem;
 
+        .titulo-y-buscador {
+        display: flex;             // Usamos Flexbox
+        justify-content: space-between; // Título a la izquierda, buscador a la derecha
+        -items: center;       // Centramos verticalmente
+        margin-bottom: $espaciado-grande; // Mantenemos el espacio antes de la grilla
+        flex-wrap: wrap; // Permite que el buscador baje si no hay espacio
+        }
+
         .titulo-tienda {
         color: $color-primary;
         font-size: 2.5rem;
@@ -253,6 +335,24 @@
         position: relative;
         z-index: 10;
         }
+
+        #buscador-cuadros {
+        display: flex;     
+        align-items: center; 
+        gap: 0.5rem;        
+
+            input {
+            padding: 0.5rem;
+            min-width: 250px; 
+            }
+            button {
+            padding: 0.5rem 1rem;
+            }
+            p#resultado-busqueda { 
+            font-style: italic;
+            color: #555;
+            }
+        } 
 
         .galeria-tienda-grid {
         display: grid;

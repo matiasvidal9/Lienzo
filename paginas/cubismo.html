@@ -10,6 +10,11 @@
 <body class="body-tienda">
     <header class="header-tienda">
         <div class="logo">LIENZO</div>
+        <div id="info-totales">
+            <p id="total-stock-valor"></p>
+            <p id="total-carrito-valor"></p>
+            <button id="btn-limpiar-carrito">Limpiar selección</button>
+        </div>
         <nav>
             <ul class="nav-links">
                 <li><a class="links" href="../index.html">Home</a></li>
@@ -23,14 +28,40 @@
                     </ul>
                 </li>
                 <li><a class="links" href="contacto.html">Contacto</a></li>
+                <li id="icono-usuario" style="cursor: pointer;"> 
+                    <img src="../imagenes/avatar-svgrepo-com.svg" alt="Ingreso Usuario" width="24" height="24"> 
+                </li>
             </ul>
         </nav>
     </header>
+    <div id="overlay" class="overlay-fondo" style="display: none;"></div>
+    <div id="tarjeta-ingreso" class="tarjeta-flotante" style="display: none;"> 
+        <h3 id="tarjeta-titulo">¡Bienvenido a Lienzo!</h3>
+        <p id="tarjeta-mensaje">Ingresa tu nombre para una experiencia personalizada.</p>
+        <div id="tarjeta-input-zona">
+            <label for="nombreInputTarjeta">Nombre:</label>
+            <input type="text" id="nombreInputTarjeta" placeholder="Tu nombre">
+            <div class="tarjeta-botones"> 
+                <button id="botonEnviarNombre">Enviar</button>
+                <button id="botonCerrarTarjetaInput">Cerrar</button> 
+            </div>
+        </div>
+    </div>
     <main>
+
         <section class="galeria-tienda">
-            <h2 class="titulo-tienda">CUBISMO</h2>
+            <div class="titulo-y-buscador"> 
+                <h2 class="titulo-tienda">CUBISMO</h2> 
+                
+                <div id="buscador-cuadros">
+                    <input type="text" id="inputBusquedaNombre" placeholder="Buscar cuadro por nombre...">
+                    <button id="botonBuscarNombre">Buscar</button>
+                    <p id="resultado-busqueda" style="margin-top: 0.5rem; min-height: 1.2em;"></p> 
+                    </div>
+                </div>
+
             <div class="galeria-tienda-grid">
-                <article class="producto-card">
+                <!-- <article class="producto-card">
                     <div class="card-imagen-container">
                         <img src="../imagenes/Cubismo/imagen1_1.png" alt="Cuadro de arte del estilo fauvismo" class="producto-imagen">
                         <img src="../imagenes/Cubismo/imagen1_2.png" alt="Cuadro de arte del estilo fauvismo en render de living" class="producto-imagen hover-imagen">
@@ -94,7 +125,7 @@
                         <h3 class="producto-nombre">La Lección</h3>
                         <p class="producto-precio">25,00 €</p>
                     </div>
-                </article>
+                </article> -->
             </div>
         </section>
     </main>

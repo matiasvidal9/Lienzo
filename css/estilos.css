@@ -5,6 +5,69 @@
 }
 
 @media screen and (min-width: 769px) {
+  /* TARJETA DE INGRESO */
+  #overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+  .tarjeta-flotante {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    background-color: #fff;
+    color: #333;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    text-align: center;
+  }
+  .tarjeta-flotante h3 {
+    margin-bottom: 1rem;
+  }
+  .tarjeta-flotante #tarjeta-input-zona {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .tarjeta-flotante #tarjeta-input-zona label {
+    margin-bottom: 0.2rem;
+  }
+  .tarjeta-flotante #tarjeta-input-zona input {
+    padding: 0.5rem;
+    width: 80%;
+    margin-bottom: 0.5rem;
+  }
+  .tarjeta-flotante .tarjeta-botones {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+  }
+  .tarjeta-flotante .tarjeta-botones button {
+    padding: 0.5rem 1rem;
+  }
+  .tarjeta-flotante #botonCerrarTarjeta {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
   /* INDEX */
   .body-index {
     font-family: "Helvetica Neue", Arial, sans-serif;
@@ -153,7 +216,7 @@
     left: 0;
     width: 100%;
     background-color: #fff;
-    z-index: 1000;
+    z-index: 999;
   }
   .header-tienda .logo {
     font-size: 1.8rem;
@@ -216,6 +279,13 @@
     padding: 2rem;
     padding-top: 8rem;
   }
+  .galeria-tienda .titulo-y-buscador {
+    display: flex;
+    justify-content: space-between;
+    -items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
   .galeria-tienda .titulo-tienda {
     color: #000;
     font-size: 2.5rem;
@@ -223,6 +293,22 @@
     font-weight: bold;
     position: relative;
     z-index: 10;
+  }
+  .galeria-tienda #buscador-cuadros {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .galeria-tienda #buscador-cuadros input {
+    padding: 0.5rem;
+    min-width: 250px;
+  }
+  .galeria-tienda #buscador-cuadros button {
+    padding: 0.5rem 1rem;
+  }
+  .galeria-tienda #buscador-cuadros p#resultado-busqueda {
+    font-style: italic;
+    color: #555;
   }
   .galeria-tienda .galeria-tienda-grid {
     display: grid;
