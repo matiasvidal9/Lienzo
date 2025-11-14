@@ -76,37 +76,44 @@ const mostrarCuadrosEnDOM = () => {
     divCuadro.className = 'producto-card'; 
     
     // HTML para la tarjeta del producto
-    divCuadro.innerHTML = `
-    <div class="card-imagen-container">
-        <img src="${cuadro.imagen}" alt="${cuadro.nombre}" class="producto-imagen">
-        <img src="${cuadro.imagenHover}" alt="${cuadro.nombre} en un living" class="producto-imagen hover-imagen">
-    </div>
-    <div class="card-info">
-        <h3 class="producto-nombre">${cuadro.nombre}</h3>
-        <p class="producto-precio">${cuadro.precio.toFixed(2)} €</p>
-        <button class="btn-agregar" id="btn-agregar-${cuadro.nombre}">Agregar al Carrito</button>
-    </div>
-    `;
+        divCuadro.innerHTML = `
+        <div class="card-imagen-container">
+            <img src="${cuadro.imagen}" alt="${cuadro.nombre}" class="producto-imagen">
+            <img src="${cuadro.imagenHover}" alt="${cuadro.nombre} en un living" class="producto-imagen hover-imagen">
+        </div>
+        <div class="card-info">
+            <h3 class="producto-nombre">${cuadro.nombre}</h3>
+            <p class="producto-precio">${cuadro.precio.toFixed(2)} €</p>
+            <button class="btn-agregar" id="btn-agregar-${cuadro.nombre}">Agregar al Carrito</button>
+        </div>
+        `;
     
-    contenedor.appendChild(divCuadro);
+        contenedor.appendChild(divCuadro);
 
     // botón Agregar al Carrito
-    const botonAgregar = document.getElementById(`btn-agregar-${cuadro.nombre}`);
-    botonAgregar.addEventListener('click', () => {
-    agregarAlCarrito(cuadro);
-    });
+        const botonAgregar = document.getElementById(`btn-agregar-${cuadro.nombre}`);
+        botonAgregar.addEventListener('click', () => {
+        agregarAlCarrito(cuadro);
+        });
     });
 };
 
 const agregarAlCarrito = (cuadro) => {
-    carrito.push(cuadro);
+    const itemExistente = carrito.find(item => item.nombre === cuadro.nombre);
+    if (itemExistente) {
+        itemExistente.cantidad++;
+        console.log(`Cantidad aumentada: ${itemExistente.nombre} (x${itemExistente.cantidad})`);
+    } else {
+        const nuevoItem = { ...cuadro, cantidad: 1 };
+        carrito.push(nuevoItem);
+        console.log("Cuadro agregado:", nuevoItem.nombre);
+    }
     localStorage.setItem('carrito', JSON.stringify(carrito));
-    console.log("Cuadro agregado:", cuadro.nombre);
-    mostrarTotalCarrito(); 
+    mostrarTotalCarrito();
 };
 
 const mostrarTotalCarrito = () => {
-    const total = carrito.reduce((acc, item) => acc + item.precio, 0);
+    const total = carrito.reduce((acc, item) => acc + (item.precio * item.cantidad), 0);
     const elTotalCarrito = document.querySelector('#total-carrito-valor');
 
     if (elTotalCarrito) {
