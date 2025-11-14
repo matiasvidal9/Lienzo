@@ -95,7 +95,7 @@ const mostrarCuadrosEnDOM = () => {
     botonAgregar.addEventListener('click', () => {
     agregarAlCarrito(cuadro);
     });
-  });
+    });
 };
 
 const agregarAlCarrito = (cuadro) => {
