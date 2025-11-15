@@ -204,6 +204,9 @@ const configurarEventListeners = () => {
     const tituloTienda = document.querySelector(".titulo-tienda");
     const botonLimpiar = document.querySelector('#btn-limpiar-carrito');
 
+/* boton comprar */
+    const botonComprar = document.querySelector('#btn-comprar');
+
 // Eventos y Funcionalidades
 
   /* TARJETA PARA INGRESO DE USUARIO */
@@ -283,24 +286,57 @@ const configurarEventListeners = () => {
                     icon: 'warning',
                     confirmButtonText: 'Entendido'
                 });
-                return; 
+                return;
             }
-            // Usamos SweetAlert para confirmar 
+
+            const nombreUsuario = localStorage.getItem('nombreUsuario') || '';
+
             Swal.fire({
-                title: 'Confirmar Compra',
-                text: `El total de tu compra es ${total.toFixed(2)} €. ¿Deseas continuar?`,
-                icon: 'question',
+                title: 'Finalizar Compra',
+                html: `
+                    <p>Total a pagar: <strong>${total.toFixed(2)} €</strong></p>
+                    <form id="checkout-form" style="text-align: left; margin-top: 20px;">
+                        
+                        <label for="swal-nombre" style="display: block; margin-bottom: 5px;">Nombre:</label>
+                        <input id="swal-nombre" class="swal2-input" value="${nombreUsuario}" placeholder="Tu nombre">
+                        
+                        <label for="swal-apellido" style="display: block; margin-bottom: 5px; margin-top: 10px;">Apellido:</label>
+                        <input id="swal-apellido" class="swal2-input" placeholder="Tu apellido">
+                        
+                        <label for="swal-email" style="display: block; margin-bottom: 5px; margin-top: 10px;">Correo Electrónico:</label>
+                        <input id="swal-email" type="email" class="swal2-input" placeholder="tu@correo.com">
+                    </form>
+                `,
+                icon: 'info',
+                showCancelButton: true,
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, comprar',
-                cancelButtonText: 'Cancelar'
+                confirmButtonText: 'Confirmar y Pagar',
+                cancelButtonText: 'Cancelar',
+                focusConfirm: false,
+                preConfirm: () => {
+                    const nombre = document.getElementById('swal-nombre').value;
+                    const apellido = document.getElementById('swal-apellido').value;
+                    const email = document.getElementById('swal-email').value;
+
+                    if (!nombre || !apellido || !email) {
+                        Swal.showValidationMessage(`Por favor, completa todos los campos.`);
+                        return false;
+                    }
+                    if (!email.includes('@')) {
+                        Swal.showValidationMessage(`Ingresa un correo válido.`);
+                        return false;
+                    }
+                    return { nombre: nombre, email: email };
+                }
             }).then((result) => { 
                 if (result.isConfirmed) {
+                    const datosCliente = result.value;
                     limpiarCarrito(false);
                     Swal.fire(
-                        '¡Gracias por tu compra!',
-                        'Tu pedido ha sido procesado.',
+                        '¡Gracias por tu compra, ${datosCliente.nombre}!',
+                        'Tu pedido ha sido procesado. Recibirás la confirmación en ${datosCliente.email}.',
                         'success'
                     );
                 }
