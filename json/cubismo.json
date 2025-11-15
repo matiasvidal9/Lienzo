@@ -1,0 +1,37 @@
+[
+    {
+    "nombre": "La Amistad",
+    "precio": 25.00,
+    "stock": true,
+    "imagen": "../imagenes/Cubismo/imagen1_1.png",
+    "imagenHover": "../imagenes/Cubismo/imagen1_2.png"
+    },
+    {
+    "nombre": "El Sueño",
+    "precio": 30.00,
+    "stock": true,
+    "imagen": "../imagenes/Cubismo/imagen2_1.png",
+    "imagenHover": "../imagenes/Cubismo/imagen2_2.png"
+    },
+    {
+    "nombre": "Las Señoritas de Avignon",
+    "precio": 28.00,
+    "stock": true,
+    "imagen": "../imagenes/Cubismo/imagen3_1.png",
+    "imagenHover": "../imagenes/Cubismo/imagen3_2.png"
+    },
+    {
+    "nombre": "Mujer con Peras",
+    "precio": 35.00,
+    "stock": false,
+    "imagen": "../imagenes/Cubismo/imagen4_1.png",
+    "imagenHover": "../imagenes/Cubismo/imagen4_2.png"
+    },
+    {
+    "nombre": "La Lección",
+    "precio": 40.00,
+    "stock": true,
+    "imagen": "../imagenes/Cubismo/imagen6_1.png",
+    "imagenHover": "../imagenes/Cubismo/imagen6_2.png"
+    }
+]

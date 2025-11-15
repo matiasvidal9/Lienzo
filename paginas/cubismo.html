@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="icon" href="../imagenes/Logo.pdf" type="image/pdf">
+    <!-- TOASTIFY -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!-- SWEETALERT -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- CSS -->
     <link rel="stylesheet" href="../css/estilos.css">
 </head>
 <body class="body-tienda">
@@ -14,6 +19,7 @@
             <p id="total-stock-valor"></p>
             <p id="total-carrito-valor"></p>
             <button id="btn-limpiar-carrito">Limpiar selección</button>
+            <button id="btn-comprar">Comprar</button>
         </div>
         <nav>
             <ul class="nav-links">
@@ -60,80 +66,15 @@
                     </div>
                 </div>
 
-            <div class="galeria-tienda-grid">
-                <!-- <article class="producto-card">
-                    <div class="card-imagen-container">
-                        <img src="../imagenes/Cubismo/imagen1_1.png" alt="Cuadro de arte del estilo fauvismo" class="producto-imagen">
-                        <img src="../imagenes/Cubismo/imagen1_2.png" alt="Cuadro de arte del estilo fauvismo en render de living" class="producto-imagen hover-imagen">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="producto-nombre">La Amistad</h3>
-                        <p class="producto-precio">25,00 €</p>
-                        </div>
-                </article>
-
-                <article class="producto-card">
-                    <div class="card-imagen-container">
-                        <img src="../imagenes/Cubismo/imagen2_1.png" alt="Cuadro de arte del estilo fauvismo" class="producto-imagen">
-                        <img src="../imagenes/Cubismo/imagen2_2.png" alt="Cuadro de arte del estilo fauvismo en render de living" class="producto-imagen hover-imagen">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="producto-nombre">El Sueño</h3>
-                        <p class="producto-precio">30,00 €</p>
-                    </div>
-                </article>
-
-                <article class="producto-card">
-                    <div class="card-imagen-container">
-                        <img src="../imagenes/Cubismo/imagen3_1.png" alt="Cuadro de arte del estilo fauvismo" class="producto-imagen">
-                        <img src="../imagenes/Cubismo/imagen3_2.png" alt="Cuadro de arte del estilo fauvismo en render de living" class="producto-imagen hover-imagen">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="producto-nombre">Las Señoritas de Avignon</h3>
-                        <p class="producto-precio">28,00 €</p>
-                    </div>
-                </article>
-
-                <article class="producto-card">
-                    <div class="card-imagen-container">
-                        <img src="../imagenes/Cubismo/imagen4_1.png" alt="Cuadro de arte del estilo fauvismo" class="producto-imagen">
-                        <img src="../imagenes/Cubismo/imagen4_2.png" alt="Cuadro de arte del estilo fauvismo en render de living" class="producto-imagen hover-imagen">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="producto-nombre">Mujer con Peras</h3>
-                        <p class="producto-precio">35,00 €</p>
-                    </div>
-                </article>
-
-                <article class="producto-card">
-                    <div class="card-imagen-container">
-                        <img src="../imagenes/Cubismo/imagen5_1.png" alt="Cuadro de arte del estilo fauvismo" class="producto-imagen">
-                        <img src="../imagenes/Cubismo/imagen5_2.png" alt="Cuadro de arte del estilo fauvismo en render de living" class="producto-imagen hover-imagen">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="producto-nombre">Yo y la aldea</h3>
-                        <p class="producto-precio">25,00 €</p>
-                    </div>
-                </article>
-
-                <article class="producto-card">
-                    <div class="card-imagen-container">
-                        <img src="../imagenes/Cubismo/imagen6_1.png" alt="Cuadro de arte del estilo fauvismo" class="producto-imagen">
-                        <img src="../imagenes/Cubismo/imagen6_2.png" alt="Cuadro de arte del estilo fauvismo en render de living" class="producto-imagen hover-imagen">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="producto-nombre">La Lección</h3>
-                        <p class="producto-precio">25,00 €</p>
-                    </div>
-                </article> -->
-            </div>
+            <div class="galeria-tienda-grid"></div>
         </section>
     </main>
 
     <footer class="footer-tienda">
         <p>&copy; 2025 Lienzo - Todos los derechos reservados</p>
     </footer>
-
+    <!-- TOASTIFY -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <!-- JS -->
     <script src="../js/tienda.js"></script>
 </body>

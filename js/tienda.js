@@ -2,8 +2,6 @@
 // 1. Catálogo de Productos y Clase (Definiciones Globales)
 // ========================================================
 
-const catalogoGuardado = localStorage.getItem('catalogoCubismo');
-let catalogoCubismo;
 
 class Cuadro {
     constructor(nombre, precio, stock, imagen, imagenHover) {
@@ -15,7 +13,7 @@ class Cuadro {
     }
 }
 
-if (catalogoGuardado) {
+/* if (catalogoGuardado) {
     catalogoCubismo = JSON.parse(catalogoGuardado);
 } else {
     catalogoCubismo = [
@@ -26,19 +24,39 @@ if (catalogoGuardado) {
         new Cuadro("La Lección", 40.00, true, "../imagenes/Cubismo/imagen6_1.png", "../imagenes/Cubismo/imagen6_2.png")
     ];
     localStorage.setItem('catalogoCubismo', JSON.stringify(catalogoCubismo));
-}
+} */
 
-// Carga del carrito
+/* // Carga del carrito
 const carritoGuardado = localStorage.getItem('carrito');
-let carrito = carritoGuardado ? JSON.parse(carritoGuardado) : [];
+let carrito = carritoGuardado ? JSON.parse(carritoGuardado) : []; */
 
 // ========================================================
 // 2. Definición de Funciones (Definiciones Globales)
 // ========================================================
+let catalogoCubismo = [];
+const carritoGuardado = localStorage.getItem('carrito');
+let carrito = carritoGuardado ? JSON.parse(carritoGuardado) : [];
 
-const obtenerNombreDeCuadros = () => {
-    return catalogoCubismo.map(cuadro => cuadro.nombre);
-}
+const cargarCatalogo = async () => {
+    try {
+        const response = await fetch('../json/cubismo.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        
+        catalogoCubismo = data.map(c => new Cuadro(c.nombre, c.precio, c.stock, c.imagen, c.imagenHover));
+        mostrarCuadrosEnDOM();
+        mostrarCalculosFinales();
+
+    } catch (error) {
+        console.error("Error al cargar el catálogo:", error);
+        const contenedor = document.querySelector('.galeria-tienda-grid');
+        if (contenedor) {
+            contenedor.innerHTML = "<p>Error al cargar productos. Intente más tarde.</p>";
+        }
+    }
+};
 
 const obtenerCuadrosEnStock = () => {
     return catalogoCubismo.filter(cuadro => 
@@ -90,24 +108,32 @@ const mostrarCuadrosEnDOM = () => {
     
         contenedor.appendChild(divCuadro);
 
-    // botón Agregar al Carrito
+    /* BOTON AGREGAR CARRITO */
         const botonAgregar = document.getElementById(`btn-agregar-${cuadro.nombre}`);
         botonAgregar.addEventListener('click', () => {
         agregarAlCarrito(cuadro);
         });
     });
 };
-
+/* FUNCIONES DEL CARRITO */
 const agregarAlCarrito = (cuadro) => {
     const itemExistente = carrito.find(item => item.nombre === cuadro.nombre);
     if (itemExistente) {
         itemExistente.cantidad++;
-        console.log(`Cantidad aumentada: ${itemExistente.nombre} (x${itemExistente.cantidad})`);
     } else {
         const nuevoItem = { ...cuadro, cantidad: 1 };
         carrito.push(nuevoItem);
-        console.log("Cuadro agregado:", nuevoItem.nombre);
     }
+    Toastify({
+        text: `"${cuadro.nombre}" agregado al carrito.`,
+        duration: 2000,
+        gravity: "bottom", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        style: {
+        background: "linear-gradient(to right, #00b09b, #96c93d)",
+        }
+    }).showToast();
+
     localStorage.setItem('carrito', JSON.stringify(carrito));
     mostrarTotalCarrito();
 };
@@ -119,22 +145,43 @@ const mostrarTotalCarrito = () => {
     if (elTotalCarrito) {
     elTotalCarrito.innerText = `Total de tu selección: ${total.toFixed(2)} €`;
     }
+    return total;
 };
 
-const limpiarCarrito = () => {
+const limpiarCarrito = (mostrarNotificacion = true) => {
     carrito = []; 
     localStorage.removeItem('carrito'); 
     mostrarTotalCarrito(); 
-    console.log("Carrito limpiado.");
+    
+    if (mostrarNotificacion) {
+        Toastify({
+            text: "Carrito limpiado.",
+            duration: 2000,
+            gravity: "bottom",
+            position: "right",
+            style: {
+            background: "#c0392b",
+            }
+        }).showToast();
+    }
 };
-
 
 // ========================================================
 // 3. Ejecución del Script y Manipulación del DOM
 // ========================================================
 
-// Envolvemos todo el código de ejecución en 'DOMContentLoaded'
+
 document.addEventListener('DOMContentLoaded', () => {
+    async function main() {
+        await cargarCatalogo();
+        mostrarTotalCarrito();
+        configurarEventListeners();
+    }
+    main();
+});
+
+// Envolvemos todo el código de ejecución en 'DOMContentLoaded'
+const configurarEventListeners = () => {
 
   // Seleccion de elementos del DOM
 
@@ -161,7 +208,6 @@ const botonLimpiar = document.querySelector('#btn-limpiar-carrito');
 
   /* TARJETA PARA INGRESO DE USUARIO */
 const mostrarTarjetaOverlay = () => {
-    console.log("Mostrando tarjeta y fondo difuminado");
     inputNombre.value = ""; 
     inputNombre.style.border = '';
     if (parrafoMensajeTarjeta) {
@@ -173,7 +219,6 @@ const mostrarTarjetaOverlay = () => {
 };
 
 const ocultarTarjetaOverlay = () => {
-    console.log("Ocultando tarjeta y fondo difuminado");
     if(tarjetaIngreso) tarjetaIngreso.style.display = 'none';
     if(overlay) overlay.style.display = 'none';
 };
@@ -187,9 +232,7 @@ if (botonEnviar) botonEnviar.addEventListener("click", () => {
     if(parrafoMensajeTarjeta) parrafoMensajeTarjeta.style.color = '';
 
     if (nombreIngresado !== "") { 
-        console.log(`Nombre ingresado: ${nombreIngresado}`);
         localStorage.setItem('nombreUsuario', nombreIngresado);
-        console.log(`Nombre "${nombreIngresado}" guardado en localStorage.`);
         ocultarTarjetaOverlay(); 
     } else {
         console.warn("Intento de envío con nombre vacío.");
@@ -202,43 +245,72 @@ if (botonEnviar) botonEnviar.addEventListener("click", () => {
 });
 
 /* BUSCADOR DE NOMBRES DE CUADROS */
-if (botonBuscar) botonBuscar.addEventListener('click', () => {
-    const terminoBusqueda = inputBusqueda.value.trim().toLowerCase(); 
-    if (parrafoResultado) parrafoResultado.innerText = "";
+    if (botonBuscar) botonBuscar.addEventListener('click', () => {
+        const terminoBusqueda = inputBusqueda.value.trim().toLowerCase(); 
+        if (parrafoResultado) parrafoResultado.innerText = "";
 
-    if (terminoBusqueda === "") {
-        if (parrafoResultado) parrafoResultado.innerText = "Por favor, ingresa un nombre para buscar.";
-        if (inputBusqueda) inputBusqueda.style.border = '1px solid red'; 
-        return; 
-    } else {
-        if (inputBusqueda) inputBusqueda.style.border = ''; 
-    }
+        if (terminoBusqueda === "") {
+            if (parrafoResultado) parrafoResultado.innerText = "Por favor, ingresa un nombre para buscar.";
+            if (inputBusqueda) inputBusqueda.style.border = '1px solid red'; 
+            return; 
+        } else {
+            if (inputBusqueda) inputBusqueda.style.border = ''; 
+        }
 
-    console.log(`Buscando cuadro: "${terminoBusqueda}"`);
-    const cuadroEncontrado = catalogoCubismo.find(cuadro => cuadro.nombre.toLowerCase() === terminoBusqueda);
+        const cuadroEncontrado = catalogoCubismo.find(cuadro => cuadro.nombre.toLowerCase() === terminoBusqueda);
 
-    if (cuadroEncontrado) {
-        if (parrafoResultado) parrafoResultado.innerText = `Encontrado: ${cuadroEncontrado.nombre} - ${cuadroEncontrado.precio.toFixed(2)} €`;
-        console.log("Cuadro encontrado:", cuadroEncontrado);
-    } else {
-        if (parrafoResultado) parrafoResultado.innerText = "Cuadro no encontrado.";
-        console.log("Cuadro no encontrado.");
-    }
-    if (inputBusqueda) inputBusqueda.value = ""; 
+        if (cuadroEncontrado) {
+            if (parrafoResultado) parrafoResultado.innerText = `Encontrado: ${cuadroEncontrado.nombre} - ${cuadroEncontrado.precio.toFixed(2)} €`;
+        } else {
+            if (parrafoResultado) parrafoResultado.innerText = "Cuadro no encontrado.";
+        }
+        if (inputBusqueda) inputBusqueda.value = ""; 
     });
 
   /* BOTÓN LIMPIAR CARRITO */
-if (botonLimpiar) {
-    botonLimpiar.addEventListener('click', limpiarCarrito);
-}
+    if (botonLimpiar) {
+        botonLimpiar.addEventListener('click', limpiarCarrito);
+    }   
+
+/* NUEVO: BOTÓN COMPRAR */
+    if (botonComprar) {
+        botonComprar.addEventListener("click", () => {
+            const total = mostrarTotalCarrito();
+            
+            if (total === 0) {
+                Swal.fire({
+                    title: '¡Carrito vacío!',
+                    text: 'Agrega productos antes de comprar.',
+                    icon: 'warning',
+                    confirmButtonText: 'Entendido'
+                });
+                return; 
+            }
+            // Usamos SweetAlert para confirmar 
+            Swal.fire({
+                title: 'Confirmar Compra',
+                text: `El total de tu compra es ${total.toFixed(2)} €. ¿Deseas continuar?`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, comprar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => { 
+                if (result.isConfirmed) {
+                    limpiarCarrito(false);
+                    Swal.fire(
+                        '¡Gracias por tu compra!',
+                        'Tu pedido ha sido procesado.',
+                        'success'
+                    );
+                }
+            });
+        });
+    }
 
   /* CAMBIO DE ESTILO DE TITULO TIENDA */
-if (tituloTienda) {
-    tituloTienda.style.textShadow = '0px 0px 3px black';
-}
-
-// Mostrar cuadros y cálculos al cargar la página
-mostrarCuadrosEnDOM();
-mostrarCalculosFinales();
-mostrarTotalCarrito();
-});
+    if (tituloTienda) {
+        tituloTienda.style.textShadow = '0px 0px 3px black';
+    }
+};
