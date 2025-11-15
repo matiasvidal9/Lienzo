@@ -180,68 +180,67 @@ document.addEventListener('DOMContentLoaded', () => {
     main();
 });
 
-// Envolvemos todo el código de ejecución en 'DOMContentLoaded'
+
 const configurarEventListeners = () => {
 
-  // Seleccion de elementos del DOM
+// Seleccion de elementos del DOM
 
 
-  // Tarjeta de Ingreso
-const iconoUsuario = document.querySelector('#icono-usuario');
-const tarjetaIngreso = document.querySelector('#tarjeta-ingreso');
-const overlay = document.querySelector('#overlay');
-const botonCerrarInput = document.querySelector('#botonCerrarTarjetaInput');
-const inputNombre = document.querySelector('#nombreInputTarjeta');
-const botonEnviar = document.querySelector('#botonEnviarNombre');
-const parrafoMensajeTarjeta = document.querySelector('#tarjeta-mensaje'); 
+// Tarjeta de Ingreso
+    const iconoUsuario = document.querySelector('#icono-usuario');
+    const tarjetaIngreso = document.querySelector('#tarjeta-ingreso');
+    const overlay = document.querySelector('#overlay');
+    const botonCerrarInput = document.querySelector('#botonCerrarTarjetaInput');
+    const inputNombre = document.querySelector('#nombreInputTarjeta');
+    const botonEnviar = document.querySelector('#botonEnviarNombre');
+    const parrafoMensajeTarjeta = document.querySelector('#tarjeta-mensaje'); 
 
 // Buscador
-const inputBusqueda = document.querySelector('#inputBusquedaNombre');
-const botonBuscar = document.querySelector('#botonBuscarNombre');
-const parrafoResultado = document.querySelector('#resultado-busqueda');
+    const inputBusqueda = document.querySelector('#inputBusquedaNombre');
+    const botonBuscar = document.querySelector('#botonBuscarNombre');
+    const parrafoResultado = document.querySelector('#resultado-busqueda');
 
 // cambio de titulo tienda y boton limpiar carrito
-const tituloTienda = document.querySelector(".titulo-tienda");
-const botonLimpiar = document.querySelector('#btn-limpiar-carrito');
+    const tituloTienda = document.querySelector(".titulo-tienda");
+    const botonLimpiar = document.querySelector('#btn-limpiar-carrito');
 
 // Eventos y Funcionalidades
 
   /* TARJETA PARA INGRESO DE USUARIO */
-const mostrarTarjetaOverlay = () => {
-    inputNombre.value = ""; 
-    inputNombre.style.border = '';
-    if (parrafoMensajeTarjeta) {
-    parrafoMensajeTarjeta.innerText = "Ingresa tu nombre para una experiencia personalizada."; 
-    parrafoMensajeTarjeta.style.color = 'black'; 
-    }
-    if(tarjetaIngreso) tarjetaIngreso.style.display = 'block';
-    if(overlay) overlay.style.display = 'block';
-};
-
-const ocultarTarjetaOverlay = () => {
-    if(tarjetaIngreso) tarjetaIngreso.style.display = 'none';
-    if(overlay) overlay.style.display = 'none';
-};
-
-if (iconoUsuario) iconoUsuario.addEventListener("click", mostrarTarjetaOverlay);
-if (botonCerrarInput) botonCerrarInput.addEventListener("click", ocultarTarjetaOverlay);
-
-if (botonEnviar) botonEnviar.addEventListener("click", () => {
-    const nombreIngresado = inputNombre.value.trim();
-    inputNombre.style.border = ''; 
-    if(parrafoMensajeTarjeta) parrafoMensajeTarjeta.style.color = '';
-
-    if (nombreIngresado !== "") { 
-        localStorage.setItem('nombreUsuario', nombreIngresado);
-        ocultarTarjetaOverlay(); 
-    } else {
-        console.warn("Intento de envío con nombre vacío.");
+    const mostrarTarjetaOverlay = () => {
+        inputNombre.value = ""; 
+        inputNombre.style.border = '';
         if (parrafoMensajeTarjeta) {
-            parrafoMensajeTarjeta.innerText = "Por favor, ingresa un nombre válido.";
-            parrafoMensajeTarjeta.style.color = 'red'; 
+        parrafoMensajeTarjeta.innerText = "Ingresa tu nombre para una experiencia personalizada."; 
+        parrafoMensajeTarjeta.style.color = 'black'; 
         }
-    inputNombre.style.border = '2px solid red'; 
-    }
+        if(tarjetaIngreso) tarjetaIngreso.style.display = 'block';
+        if(overlay) overlay.style.display = 'block';
+    };
+
+    const ocultarTarjetaOverlay = () => {
+        if(tarjetaIngreso) tarjetaIngreso.style.display = 'none';
+        if(overlay) overlay.style.display = 'none';
+    };
+
+    if (iconoUsuario) iconoUsuario.addEventListener("click", mostrarTarjetaOverlay);
+    if (botonCerrarInput) botonCerrarInput.addEventListener("click", ocultarTarjetaOverlay);
+
+    if (botonEnviar) botonEnviar.addEventListener("click", () => {
+        const nombreIngresado = inputNombre.value.trim();
+        inputNombre.style.border = ''; 
+        if(parrafoMensajeTarjeta) parrafoMensajeTarjeta.style.color = '';
+
+        if (nombreIngresado !== "") { 
+            localStorage.setItem('nombreUsuario', nombreIngresado);
+            ocultarTarjetaOverlay(); 
+        } else {
+            if (parrafoMensajeTarjeta) {
+                parrafoMensajeTarjeta.innerText = "Por favor, ingresa un nombre válido.";
+                parrafoMensajeTarjeta.style.color = 'red'; 
+            }
+        inputNombre.style.border = '2px solid red'; 
+        }
 });
 
 /* BUSCADOR DE NOMBRES DE CUADROS */
